@@ -1,0 +1,37 @@
+﻿@model CashBoxModel.HairColour
+
+@using (Ajax.BeginForm("_Create", "HairColour", new AjaxOptions()
+{
+    Confirm = "Are you sure you want to add this Hair Colour?",
+    LoadingElementId = "divLoading",
+    OnBegin = "Begin",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "list",
+    OnSuccess = "Successful",
+    OnFailure = "Failed"
+}))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-lg-12">
+        <div class="modal fade" id="createColour" tabindex="-1" role="dialog" aria-labelledby="createStation" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Hair Colour</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Enter Colour</label>
+                            @Html.TextBoxFor(m => m.Colour, new { @Placeholder = "Enter Colour", @class = "form-control", @required = "required" })
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" id="closeCreate">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Hair Colour</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

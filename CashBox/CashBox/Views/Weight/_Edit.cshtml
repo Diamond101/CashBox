@@ -1,0 +1,40 @@
+﻿@model CashBoxModel.Weight
+
+@using (Ajax.BeginForm("_Edit", "Weight", new AjaxOptions()
+{
+    Confirm = "Are you sure you want to update this Weight record?",
+    LoadingElementId = "divLoading",
+    OnBegin = "UpdateBegin",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "list",
+    OnSuccess = "UpdateSuccessful",
+    OnFailure = "Failed"
+
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ID, new { @Id = "txtweightID" })
+    <div class="col-lg-12">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Weight Record</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label>WeightValue</label>
+                            @Html.TextBoxFor(m => m.WeightValue, new { @onkeypress = "return isNumber(event)", @Placeholder = "Enter Weight Value", @id = "eWeightValue", @class = "form-control", @required = "required" })
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" id="closeEdit">Close</button>
+                        <button type="submit" class="btn btn-primary">Update Weight</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

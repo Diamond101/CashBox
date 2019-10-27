@@ -1,0 +1,108 @@
+﻿@using CashBoxModel
+@using CashBoxModel.ViewModel
+@*@{
+        Users userSession = (Users)HttpContext.Current.Session["UserSession"];
+    }*@
+
+@model CashBoxModel.People
+
+@using (Ajax.BeginForm("_Edit", "People", new AjaxOptions()
+{
+    Confirm = "Are you sure you want to update this  record?",
+    LoadingElementId = "divLoading",
+    OnBegin = "UpdateBegin",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "list",
+    OnSuccess = "UpdateSuccessful",
+    OnFailure = "Failed"
+
+}))
+{
+@Html.AntiForgeryToken()
+@Html.HiddenFor(m => m.ID, new { @Id = "txtID" })
+
+<div class="col-lg-12">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit List Record</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">First Name *</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(u => u.FirstName, new { @id = "mFirstName", @Placeholder = "FirstName", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Surname *</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(u => u.Surname, new { @id = "mSurname", @Placeholder = "Surname", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Date of Birth *</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(u => u.DateOfBirth, new { @id = "mDateOfBirth", @type = "date", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Weight *</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownListFor(u => u.Weight, (SelectList)ViewBag.Weight, "Select Weight", new { @id = "mWeight", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="col-md-4">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Age *</label>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(u => u.Age, new { @id = "mAge", @onkeypress = "return isNumber(event)", @Placeholder = "Age", @class = "form-control", @required = "required" })
+                </div>
+            </div>
+        </div>*@
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Height *</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownListFor(u => u.Height, (SelectList)ViewBag.Height, "Select Height", new { @id = "mHeight", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Hair Colour *</label>
+                                <div class="col-sm-9">
+                                    @Html.DropDownListFor(u => u.HairColour, (SelectList)ViewBag.HairColor, "Select Hair Colour", new { @id = "mHairColour", @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                       
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" id="closeEdit">Close</button>
+                        <button type="submit" class="btn btn-primary">Update Record</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+}

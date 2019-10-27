@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CashBoxModel.People>
+
+    <table class="table table-striped" id="example">
+        <thead>
+            <tr>
+                <th>SN</th>
+                <th>First Name</th>
+                <th>Surname</th>
+                <th>Date of Birth</th>
+                <th>Age</th>
+                <th>Height</th>
+                <th>Hair Colour</th>
+                <th>Weight</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int i = 0; }
+            @foreach (var modelitem in Model)
+            {
+                i++;
+                <tr>
+                    <td class="py-1">@i</td>
+                    <td>@Html.DisplayFor(m => modelitem.FirstName)</td>
+                    <td>@Html.DisplayFor(m => modelitem.Surname)</td>
+                    <td>@Html.DisplayFor(m => modelitem.DateOfBirth, "_ShortDateTime")</td>
+                    <td>@Html.DisplayFor(m => modelitem.Age)</td>
+                    <td>@Html.DisplayFor(m => modelitem.Height)</td>
+                    <td>@Html.DisplayFor(m => modelitem.HairColour)</td>
+                    <td>@Html.DisplayFor(m => modelitem.Weight)</td>
+                    <td>
+                        <button id="@modelitem.ID" type="button" onclick="loadDetails(this.id);" class="btn btn-sm btn-outline-success btn-fw" data-toggle="modal" data-target="#editModal" data-keyboard="false" data-backdrop="static"><i class="mdi mdi-upload"></i>Edit</button>
+                        <button id="@modelitem.ID" type="button" onclick="ShowDeletePopUp(this.id);" class="btn btn-sm btn-outline-danger btn-fw"><i class="mdi mdi-alert-outline"></i>Delete</button>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

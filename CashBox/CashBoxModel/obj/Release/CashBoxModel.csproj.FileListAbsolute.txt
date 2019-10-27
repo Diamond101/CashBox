@@ -1,0 +1,12 @@
+C:\CashBox\CashBoxModel\bin\Release\CashBoxModel.dll.config
+C:\CashBox\CashBoxModel\bin\Release\CashBoxModel.dll
+C:\CashBox\CashBoxModel\bin\Release\CashBoxModel.pdb
+C:\CashBox\CashBoxModel\bin\Release\CrytoLibrary.dll
+C:\CashBox\CashBoxModel\bin\Release\EntityFramework.dll
+C:\CashBox\CashBoxModel\bin\Release\EntityFramework.SqlServer.dll
+C:\CashBox\CashBoxModel\bin\Release\EntityFramework.xml
+C:\CashBox\CashBoxModel\bin\Release\EntityFramework.SqlServer.xml
+C:\CashBox\CashBoxModel\obj\Release\CashBoxModel.csprojResolveAssemblyReference.cache
+C:\CashBox\CashBoxModel\obj\Release\CashBoxModel.csproj.CoreCompileInputs.cache
+C:\CashBox\CashBoxModel\obj\Release\CashBoxModel.dll
+C:\CashBox\CashBoxModel\obj\Release\CashBoxModel.pdb

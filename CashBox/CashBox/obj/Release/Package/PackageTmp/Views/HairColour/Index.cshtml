@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "HairColour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-12 grid-margin"> Hair Colour
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"> REGISTERED HAIR COLOUR </h4>
+                                <button style="float: right" type="button" class="btn btn-inverse-primary btn-fw" data-toggle="modal" data-target="#createColour">Add Hair Colour</button>
+                                <br /><br />
+                                <div class="table-responsive" id="list">
+                                    @Html.Partial("_List")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="divFormCreate">
+    @Html.Partial("_Create", new CashBoxModel.HairColour())
+</div>
+<div id="divFormEdit">
+    @Html.Partial("_Edit", new CashBoxModel.HairColour())
+</div>
+<div id="divFormDelete" style="display: none">
+    @Html.Partial("_Delete", new CashBoxModel.HairColour())
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Colour').DataTable();
+    });
+
+    function loadDetails(id) {
+        $.ajax({
+            url: '@Url.Action("_LoadEdit", "HairColour")',
+            method: "POST",
+            cache: false,
+            data: { id: id },
+            success: function (HairColour) {
+                $('#txtColourID').val(HairColour.ID);
+                $('#eColour').val(HairColour.Colour);
+            },
+            error: function () {
+                alert('Cannot fetch unit record.');
+            }
+        });
+    }
+
+    function ShowDeletePopUp(id) {
+        $('#txtDeleteID').val(id);
+        $('#btnDelete').click();
+    }
+
+    function Begin() {
+
+    }
+
+    function Successful() {
+        $('#closeCreate').click();
+        alert('New Colour added successfully.');
+        $('#Colour').DataTable();
+    }
+
+    function UpdateBegin() {
+
+    }
+
+    function UpdateSuccessful() {
+        $('#closeEdit').click();
+        alert('Colour record updated successfully.');
+        $('#Colour').DataTable();
+    }
+
+    function DeleteBegin() {
+
+    }
+
+    function DeleteSuccessful() {
+        alert('Colour record deleted successfully.');
+        $('#Colour').DataTable();
+    }
+
+    function Failed() {
+        alert('Operation failed.');
+    }
+</script>

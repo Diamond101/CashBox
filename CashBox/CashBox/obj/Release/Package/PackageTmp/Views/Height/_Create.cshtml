@@ -1,0 +1,37 @@
+﻿@model CashBoxModel.Height
+
+@using (Ajax.BeginForm("_Create", "Height", new AjaxOptions()
+{
+    Confirm = "Are you sure you want to add this Height?",
+    LoadingElementId = "divLoading",
+    OnBegin = "Begin",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "list",
+    OnSuccess = "Successful",
+    OnFailure = "Failed"
+}))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-lg-12">
+        <div class="modal fade" id="createStation" tabindex="-1" role="dialog" aria-labelledby="createStation" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Height</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Height Number</label>
+                            @Html.TextBoxFor(m => m.HeightNumber, new { @onkeypress = "return isNumber(event)", @Placeholder = "Enter Height Number", @class = "form-control", @required = "required" })
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" id="closeCreate">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Height</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

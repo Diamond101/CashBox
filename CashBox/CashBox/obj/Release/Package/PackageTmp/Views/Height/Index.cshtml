@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Height";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"> REGISTERED HEIGHT</h4>
+                                <button style="float: right" type="button" class="btn btn-inverse-primary btn-fw" data-toggle="modal" data-target="#createStation">Add Height</button>
+                                <br /><br />
+                                <div class="table-responsive" id="list">
+                                    @Html.Partial("_List")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="divFormCreate">
+    @Html.Partial("_Create", new CashBoxModel.Height())
+</div>
+<div id="divFormEdit">
+    @Html.Partial("_Edit", new CashBoxModel.Height())
+</div>
+<div id="divFormDelete" style="display: none">
+    @Html.Partial("_Delete", new CashBoxModel.Height())
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Height').DataTable();
+    });
+
+    function loadDetails(id) {
+        $.ajax({
+            url: '@Url.Action("_LoadEdit", "Height")',
+            method: "POST",
+            cache: false,
+            data: { id: id },
+            success: function (height) {
+                $('#txtheightID').val(height.ID);
+                $('#eHeightNumber').val(height.HeightNumber);
+            },
+            error: function () {
+                alert('Cannot fetch unit record.');
+            }
+        });
+    }
+
+    function ShowDeletePopUp(id) {
+        $('#txtDeleteID').val(id);
+        $('#btnDelete').click();
+    }
+
+    function Begin() {
+
+    }
+
+    function Successful() {
+        $('#closeCreate').click();
+        alert('New Height added successfully.');
+        $('#Height').DataTable();
+    }
+
+    function UpdateBegin() {
+
+    }
+
+    function UpdateSuccessful() {
+        $('#closeEdit').click();
+        alert('Height record updated successfully.');
+        $('#Height').DataTable();
+    }
+
+    function DeleteBegin() {
+
+    }
+
+    function DeleteSuccessful() {
+        alert('Height record deleted successfully.');
+        $('#Height').DataTable();
+    }
+
+    function Failed() {
+        alert('Operation failed.');
+    }
+</script>

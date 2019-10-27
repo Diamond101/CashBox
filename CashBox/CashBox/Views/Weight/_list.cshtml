@@ -1,0 +1,28 @@
+﻿@model IEnumerable<CashBoxModel.Weight>
+
+<table class="table table-striped" id="Weight">
+    <thead>
+        <tr>
+            <th>SN</th>
+            <th>Weight Value</th> 
+            <th>Date Added</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int i = 0; }
+        @foreach (var modelitem in Model)
+        {
+            i++;
+            <tr>
+                <td class="py-1">@i</td>
+                <td>@Html.DisplayFor(m => modelitem.WeightValue)</td>
+                <td>@Html.DisplayFor(m => modelitem.DateCreated, "_ShortDateTime")</td>
+                <td>
+                    <button id="@modelitem.ID" type="button" onclick="loadDetails(this.id);" class="btn btn-sm btn-outline-success btn-fw" data-toggle="modal" data-target="#editModal" data-keyboard="false" data-backdrop="static"><i class="mdi mdi-file-document"></i>Edit</button>
+                    <button id="@modelitem.ID" type="button" onclick="ShowDeletePopUp(this.id);" class="btn btn-sm btn-outline-danger btn-fw"><i class="mdi mdi-alert-outline"></i>Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
